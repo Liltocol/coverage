@@ -1,10 +1,10 @@
-package main
+package main_test
 
-import "testing"
+import (
+	"testing"
 
-func add(a, b int) int {
-	return a + b
-}
+	"example.com/mod/app"
+)
 
 func TestAdd(t *testing.T) {
 	type args struct {
@@ -21,11 +21,17 @@ func TestAdd(t *testing.T) {
 			args: args{a: 1, b: 2},
 			want: 3,
 		},
+		{
+			name: "normal2",
+			args: args{a: 2, b: 3},
+			want: 5,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := add(tt.args.a, tt.args.b); got != tt.want {
+			if got := app.Add(tt.args.a, tt.args.b); got != tt.want {
 				t.Errorf("add() = %v, want %v", got, tt.want)
+
 			}
 		})
 	}
