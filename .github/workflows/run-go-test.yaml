@@ -17,7 +17,7 @@ jobs:
       - name: Run test
         run: |
           docker compose exec -T app go test -v -cover ./test/... -coverprofile=cover.out 2>&1 | tee > coverage.txt
-          go get code.google.com/p/go.tools/cmd/cover
+          go get godoc.org/golang.org/x/tools/cmd/cover
           go get github.com/t-yuki/gocover-cobertura
           gocover-cobertura < coverage.txt > coverage.xml
           
