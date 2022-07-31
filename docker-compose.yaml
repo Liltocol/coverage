@@ -12,3 +12,4 @@ services:
     tty: true
     command: air
     restart: always
+platform: linux/arm64/v8
