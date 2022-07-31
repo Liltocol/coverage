@@ -16,13 +16,16 @@ jobs:
 
       - name: Run test
         run: |
-          docker compose exec -T app go test -v -cover ./test/... -coverprofile=cover.out 2>&1 | tee > report.xml
+          docker compose exec -T app go test -v -cover ./test/... -coverprofile=cover.out 2>&1 | tee > coverage.txt
+          go install github.com/boumenot/gocover-cobertura
+          gocover-cobertura < coverage.txt > coverage.xml
+          
 
       - name: Code Coverage Summary Report
         uses: irongut/CodeCoverageSummary@v1.0.2
         # uses: joshjohanning/CodeCoverageSummary@v1.0.2
         with:
-          filename: report.xml
+          filename: coverage.xml
           badge: true
           format: 'markdown'
           output: 'both'
