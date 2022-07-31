@@ -16,7 +16,15 @@ jobs:
 
       - name: Run test
         run: |
-          docker compose exec -T app go test -v ./test/... -coverprofile=coverage.txt -covermode count
+          docker compose exec -T app go test -v ./test/... -coverprofile=coverage.txt -covermode count github.com/gorilla/mux
+
+      - name: Sleep for 15 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '15s'
+
+      - name: Genarate coverage file
+        run : |
           go install golang.org/x/tools/cmd/godoc@latest
           go install github.com/t-yuki/gocover-cobertura@latest
           gocover-cobertura < coverage.txt > coverage.xml
