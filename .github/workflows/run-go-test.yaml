@@ -16,12 +16,16 @@ jobs:
 
       - name: Run test
         run: |
-          docker compose exec -T app go test -v ./test/... -coverprofile=coverage.txt -covermode count github.com/gorilla/mux
+          docker compose up -d
 
       - name: Sleep for 15 seconds
         uses: jakejarvis/wait-action@master
         with:
           time: '15s'
+
+      - name: Run test
+        run: |
+          docker compose exec -T app go test -v ./test/... -coverprofile=coverage.txt -covermode count github.com/gorilla/mux
 
       - name: Genarate coverage file
         run : |
