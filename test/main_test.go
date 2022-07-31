@@ -21,6 +21,11 @@ func TestAdd(t *testing.T) {
 			args: args{a: 1, b: 2},
 			want: 3,
 		},
+		{
+			name: "normal2",
+			args: args{a: 2, b: 3},
+			want: 5,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
